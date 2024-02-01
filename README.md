@@ -1,10 +1,10 @@
 ![AdventureWorks_Logo](https://github.com/Mangeshgp14/Cycle_Company_Revenue_Analysis/assets/107695842/cc4290c0-5cf8-4554-9c51-a037e3c7a546)
 
 
-**Situation:**
+**Situation 🧑‍💼:**
 - You have been hired as a Data Analyst by AdventureWorks, a global manufacturing company that produces cycling equipment and accessories.
 
-**Project Brief:**
+**Project Brief 📄:**
 \
 The Management team needs a way to
 - Track KPIs (sales, revenue, profit, returns)
@@ -12,8 +12,14 @@ The Management team needs a way to
 - Analyze product-level trends
 - Identify high-value customers.
 
-**Input Data**
+**Input Data 📁:**
 - The organization has provided a folder of raw CSV files that contain information about transactions, returns, products, and sales territories.
 
-**Tech Stack:**
+**Tech Stack 👩‍💻:**
 - Excel and PowerBI
+
+**Workflow ⏩:**
+- Connect and Transform the raw data
+- Build a relational data model
+- Create calculated columns and measures with DAX
+- Design an interactive dashboard to visualize the data
