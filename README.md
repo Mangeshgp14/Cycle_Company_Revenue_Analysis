@@ -1,3 +1,6 @@
+![AdventureWorks_Logo](https://github.com/Mangeshgp14/Cycle_Company_Revenue_Analysis/assets/107695842/cc4290c0-5cf8-4554-9c51-a037e3c7a546)
+
+
 **Situation:**
 - You have been hired as a Data Analyst by AdventureWorks, a global manufacturing company that produces cycling equipment and accessories.
 
