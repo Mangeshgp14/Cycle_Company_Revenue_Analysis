@@ -35,15 +35,19 @@ The Management team needs a way to
 
 ````PYTHON
 # Installing necessary libraries
-#pip install mysql-connector-python
-#pip install pandas
-#pip install sqlalchemy
+#!pip install mysql-connector-python
+#!pip install pandas
+#!pip install sqlalchemy
+````
 
+````PYTHON
 # Importing Libraries
-
 import pandas as pd
 from sqlalchemy import create_engine
+import config
+````
 
+````PYTHON
 # MySQL database configuration
 db_config = {
     'user': config.username,
@@ -54,11 +58,22 @@ db_config = {
 
 # Create a SQLAlchemy engine to connect to MySQL server
 mysql_engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}")
-
+````
+````PYTHON
 # Create a new database
 new_database_name = 'adventure_works_database'
 with mysql_engine.connect() as connection:
     connection.execute(f"CREATE DATABASE IF NOT EXISTS {new_database_name}")
+
+# Connect to the newly created database
+db_config['database'] = new_database_name
+engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}/{db_config['database']}")
+
+````
+
+
+````PYTHON
+# Loading CSV files as tables into the database
 
 csv_files = ['AdventureWorks Calendar Lookup', 'AdventureWorks Customer Lookup', 'AdventureWorks Product Categories Lookup', 'AdventureWorks Product Lookup', 'AdventureWorks Product Subcategories Lookup', 'AdventureWorks Returns Data', 'AdventureWorks Sales Data 2020', 'AdventureWorks Sales Data 2021', 'AdventureWorks Sales Data 2022', 'AdventureWorks Territory Lookup', 'Product Category Sales (Unpivot Demo)']
 
@@ -69,9 +84,6 @@ for i in csv_files :
 
     # Table name in MySQL
     table_name = f'{i}'
-
-    # Create a SQLAlchemy engine
-    engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}/{db_config['new_database_name']}")
 
     # Read CSV into a Pandas DataFrame
     df = pd.read_csv(csv_file_path)
