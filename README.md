@@ -38,6 +38,8 @@ The Management team needs a way to
 #!pip install mysql-connector-python
 #!pip install pandas
 #!pip install sqlalchemy
+
+#Also create a python file name 'config' that contains all the confidential credentials.
 ````
 
 ````PYTHON
@@ -56,7 +58,7 @@ db_config = {
     'raise_on_warnings': True
 }
 
-# Create a SQLAlchemy engine to connect to MySQL server
+# Create a SQLAlchemy engine to connect to the MySQL server
 mysql_engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}")
 ````
 ````PYTHON
@@ -74,7 +76,6 @@ engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['
 
 ````PYTHON
 # Loading CSV files as tables into the database
-
 csv_files = ['AdventureWorks Calendar Lookup', 'AdventureWorks Customer Lookup', 'AdventureWorks Product Categories Lookup', 'AdventureWorks Product Lookup', 'AdventureWorks Product Subcategories Lookup', 'AdventureWorks Returns Data', 'AdventureWorks Sales Data 2020', 'AdventureWorks Sales Data 2021', 'AdventureWorks Sales Data 2022', 'AdventureWorks Territory Lookup', 'Product Category Sales (Unpivot Demo)']
 
 for i in csv_files :
