@@ -60,7 +60,7 @@ new_database_name = 'adventure_works_database'
 with mysql_engine.connect() as connection:
     connection.execute(f"CREATE DATABASE IF NOT EXISTS {new_database_name}")
 
-csv_files = ['artist','canvas_size', 'museum', 'museum_hours', 'product_size', 'subject', 'work' ]
+csv_files = ['AdventureWorks Calendar Lookup', 'AdventureWorks Customer Lookup', 'AdventureWorks Product Categories Lookup', 'AdventureWorks Product Lookup', 'AdventureWorks Product Subcategories Lookup', 'AdventureWorks Returns Data', 'AdventureWorks Sales Data 2020', 'AdventureWorks Sales Data 2021', 'AdventureWorks Sales Data 2022', 'AdventureWorks Territory Lookup', 'Product Category Sales (Unpivot Demo)']
 
 for i in csv_files :
     
