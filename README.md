@@ -25,3 +25,59 @@ The Management team needs a way to
 - Build a relational data model
 - Create calculated columns and measures with DAX
 - Design an interactive dashboard to visualize the data
+
+**1. Building the Data Pipeline ⚙️:**
+- The data files provided by the client are in the form of CSV files.
+- We will use Python to load these files into MySQL Database.
+- MySQL Database will be connected to Power BI as the main data source.
+
+**1.1. Python Script to load the dataset(CSV files) into MySQL database**
+
+````PYTHON
+# Installing necessary libraries
+#pip install mysql-connector-python
+#pip install pandas
+#pip install sqlalchemy
+
+# Importing Libraries
+
+import pandas as pd
+from sqlalchemy import create_engine
+
+# MySQL database configuration
+db_config = {
+    'user': config.username,
+    'password': config.password,
+    'host': config.host,
+    'raise_on_warnings': True
+}
+
+# Create a SQLAlchemy engine to connect to MySQL server
+mysql_engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}")
+
+# Create a new database
+new_database_name = 'adventure_works_database'
+with mysql_engine.connect() as connection:
+    connection.execute(f"CREATE DATABASE IF NOT EXISTS {new_database_name}")
+
+csv_files = ['artist','canvas_size', 'museum', 'museum_hours', 'product_size', 'subject', 'work' ]
+
+for i in csv_files :
+    
+    # CSV file path
+    csv_file_path = f'{i}.csv'
+
+    # Table name in MySQL
+    table_name = f'{i}'
+
+    # Create a SQLAlchemy engine
+    engine = create_engine(f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}/{db_config['new_database_name']}")
+
+    # Read CSV into a Pandas DataFrame
+    df = pd.read_csv(csv_file_path)
+
+    # Insert DataFrame records into MySQL using SQLAlchemy
+    df.to_sql(name=table_name, con=engine, if_exists='replace', index=False)
+
+    print("Data imported successfully.")
+````
